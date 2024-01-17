@@ -3,7 +3,9 @@
 
 # In[3]:
 
-
+!pip install langchain
+!pip install replicate
+!pip install langchain_community
 # Importation des bibliothèques et modules nécessaires
 import streamlit as st
 from langchain.chat_models import ChatOpenAI
