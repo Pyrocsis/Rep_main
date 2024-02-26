@@ -11,7 +11,7 @@ from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.llms import Ollama
 
-OPEN_AI_API_KEY = "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"
+OPEN_AI_API_KEY = os.environ["OPENAI_API_KEY"]
 
 st.title("Document Query Analyzer")
 
@@ -30,7 +30,7 @@ if uploaded_file is not None :
 
     embeddings_model = OpenAIEmbeddings(openai_api_key=OPEN_AI_API_KEY)
 
-    text_splitter = CharacterTextSplitter(chunk_size=500, chunk_overlap=0)
+    text_splitter = CharacterTextSplitter(chunk_size=1500, chunk_overlap=200)
     texts = text_splitter.split_documents(documents)
     db = FAISS.from_documents(texts, embeddings_model)
     retriever = db.as_retriever()
